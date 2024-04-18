@@ -1,6 +1,9 @@
+require('dotenv').config();
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://jkawa2004:swamiji99@cluster0.7hfurw4.mongodb.net/todos')
+mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('Connected to MongoDB'))
+    .catch(err => console.error('Error connecting to MongoDB:', err));
 
 const todoSchema = mongoose.Schema({
     title: String,
